@@ -1,0 +1,66 @@
+			BufferedImage image = ImageUtils.getBufferedImage("/home/deansmiller/Pictures/Jarvis Test Cases/Objects/101_ObjectCategories/BACKGROUND_Google/image_0171.jpg");
+			BufferedWriter writer = new BufferedWriter(new FileWriter("/home/deansmiller/Pictures/Jarvis Test Cases/Hands/non_skin_pixels.data"));
+			double[] input = new double[3];
+			for(int w = 0; w < image.getWidth(); w++){
+				for(int h = 0; h < image.getHeight(); h++){
+					Color tmpColor = new Color(image.getRGB(w, h));
+					input[0] = tmpColor.getRed();
+					input[1] = tmpColor.getGreen();
+					input[2] = tmpColor.getBlue();
+					for(int i = 0; i < input.length; i++){
+						writer.append(input[i] + ",");
+					}
+					writer.append(":0.0");
+					writer.append("\n");
+				}
+			}
+			
+			writer.close();
+
+
+//			PatternReader reader = new PatternReader("/home/deansmiller/Dropbox/Jarvis/src/test.data");
+//			ArrayList<Pattern> patterns = reader.read();
+//
+//			reader.setDataFile("/home/deansmiller/Dropbox/Jarvis/src/test_run.data");
+//			ArrayList<Pattern> testRunPatterns = reader.read();
+//			System.out.println(testRunPatterns.size());
+//	        Collections.shuffle(patterns);
+//			Network nn = new Network( 361, 12, 1);
+//			nn.setPatterns(patterns);
+//			nn.setParameters(0.01, 0.1);
+//			nn.train();
+//			nn.testRun(testRunPatterns);
+
+
+
+//			ImageReader imageReader = new ImageReader();
+//			imageReader.setScale(24, 24);
+//			DataFolderReader folderReader = new DataFolderReader("/home/deansmiller/Pictures/Jarvis Test Cases/Hands/Gesture Samples/filtered play and stop/stop", imageReader);
+//			ArrayList<Data> dataSet = folderReader.read();
+//			double[] input;
+//			BufferedWriter writer = new BufferedWriter(new FileWriter("/home/deansmiller/Pictures/Jarvis Test Cases/Hands/filtered_stop_hands.data"));
+//			PCA pca;
+//			for(Data d : dataSet) {
+//				pca = new PCA(d);
+//				input = pca.deriveFeatureVector().getRowPackedCopy();
+//				for(int i = 0; i < input.length; i++){
+//					writer.append(input[i] + ",");
+//				}
+//				writer.append(":1.0");
+//				writer.append("\n");
+//			}
+//			writer.close();
+
+//			PatternReader non = new PatternReader("/home/deansmiller/Pictures/Jarvis Test Cases/Hands/filtered_non_hands.data"); 
+//			PatternReader stop = new PatternReader("/home/deansmiller/Pictures/Jarvis Test Cases/Hands/filtered_stop_hands.data"); 
+//			ArrayList<Pattern> trainingSet = new ArrayList<Pattern>();
+//			trainingSet.addAll(non.read());
+//			trainingSet.addAll(stop.read());
+//			Collections.shuffle(trainingSet);
+//			Network n = new Network(576, 24, 1);
+//			n.setParameters(0.01, 0.01);
+//			n.setPatterns(trainingSet);
+//			n.train();
+//			n.testRun(trainingSet);
+//			
+//			n.persistNetwork("/home/deansmiller/Dropbox/Jarvis/src/filtered_stop_nn_.data");
